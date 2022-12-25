@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <script type="text/javascript" th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function(){
+	    $('#id').focus();
+
+
+	    $('#id').blur(function(){
+            // 비동기요청으로 #id값을 서버에 보내고 #id값이 중복인지 아닌지....
+            if($('#id').val() == '') {
+                $('#id').focus();
+                return;
+            }
+            $.ajax({
+                url:'/idCheck',
+                type:'post',
+                data:{id:$('#id').val()},
+                success:function(data) { // data -> "yes":사용가능한ID, "no":사용불가ID
+                    if(data == 'yes') {
+                        alert($('#id').val()+'는 사용가능한 ID입니다');
+                        $('#pw').focus();
+                    } else {
+                        alert($('#id').val()+'는 사용중인 ID입니다');
+                        $('#id').select();
+                        $('#id').focus();
+                    }
+                }
+		    });
+	    });
+    });
+    /*]]>*/
+    </script>
+</head>
+<body>
+<!--
+action : controller 도착 위치 (mapping)
+method : @GetMapping과 @PostMapping 구분하는 전달 방식
+button 클릭 시 form tag안에 있는 모든 데이터를 서버에 전달
+-->
+<form action="signUp" method="post">
+    id : <input type="text" name="input_id">
+    pw : <input type="text" name="pw">
+    name : <input type="text" name="name">
+    email : <input type="text" name="email">
+    <button>회원가입</button>
+</form>
+
+<!--
+    each : 타임리프의 반복문(for)
+    tr : 세로줄
+    th : table header : 컬럼
+    td : table body : 튜플(mysql의 데이터 한 단위)
+-->
+<table>
+    <tr>
+        <th>id</th>
+        <th>pw</th>
+        <th>name</th>
+        <th>email</th>
+
+    </tr>
+<!--        each : 배열의 갯수에 따라 생성
+            item : ${accountList} = (하나의 인스턴스 : ${배열명})
+            배열로 Model에서 받으면, each 반복문으로 하나씩(하나의 인스턴스) 꺼내서 출력
+-->
+    <tr th:each="item : ${signup_list}">
+        <td th:text="${item.getInput_id()}"></td>
+        <td th:text="${item.getPw()}"></td>
+        <td th:text="${item.getName()}"></td>
+        <td th:text="${item.getEmail()}"></td>
+    </tr>
+</table>
+</body>
+</html>

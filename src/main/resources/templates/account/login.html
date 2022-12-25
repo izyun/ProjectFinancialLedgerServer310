@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+</head>
+<body>
+<!--로그인 실패 메세지 출력-->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+        function if_alert() {
+          const page = /*[[${fail_message}]]*/;
+          if(page == "로그인이 실패했습니다") {
+            alert("로그인 실패!!!!");
+          }
+        }
+    if_alert();
+    /*]]>*/
+</script>
+<!--<p th:if="${fail_message.equals('로그인이 실패했습니다')}">로그인이 실패!!!</p>-->
+
+
+<div class="main_outer">
+    <div class="main_inner">
+        <form action="login" method="post">
+            ID : <input type="text" name="input_id">
+            PW : <input type="text" name="pw">
+            <button>로그인</button>
+        </form>
+    </div>
+
+    <div>
+        <a href="/signUp">회원가입</a>
+    </div>
+</div>
+
+<!--<table>-->
+<!--    <tr th:each="${list}">-->
+<!--        <td>-->
+<!--            &lt;!&ndash;      <a th:text="${item.toString()}"></a>&ndash;&gt;-->
+<!--            &lt;!&ndash;      <a th:text="${item.name}"></a>&ndash;&gt;-->
+<!--            <a th:text="${members.getName()}"></a>-->
+<!--        </td>-->
+
+<!--    </tr>-->
+<!--</table>-->
+
+</body>
+</html>
