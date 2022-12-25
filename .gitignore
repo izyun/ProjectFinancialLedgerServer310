@@ -27,6 +27,8 @@ out/
 build
 .jpb
 generated
+build.gradle.kts
+.properties
 !**/src/main/**/out/
 !**/src/test/**/out/
 
