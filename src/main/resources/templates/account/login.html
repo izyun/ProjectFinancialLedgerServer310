@@ -23,7 +23,7 @@
 <div class="main_outer">
     <div class="main_inner">
         <form action="login" method="post">
-            ID : <input type="text" name="input_id">
+            ID : <input type="text" name="account_id">
             PW : <input type="text" name="pw">
             <button>로그인</button>
         </form>
@@ -34,16 +34,16 @@
     </div>
 </div>
 
-<!--<table>-->
-<!--    <tr th:each="${list}">-->
-<!--        <td>-->
-<!--            &lt;!&ndash;      <a th:text="${item.toString()}"></a>&ndash;&gt;-->
-<!--            &lt;!&ndash;      <a th:text="${item.name}"></a>&ndash;&gt;-->
-<!--            <a th:text="${members.getName()}"></a>-->
-<!--        </td>-->
+<table>
+    <tr th:each="item: ${list}">
+        <td>
+            <!--      <a th:text="${item.toString()}"></a>-->
+            <!--      <a th:text="${item.name}"></a>-->
+            <a th:text="${item.getName()}"></a>
+        </td>
 
-<!--    </tr>-->
-<!--</table>-->
+    </tr>
+</table>
 
 </body>
 </html>

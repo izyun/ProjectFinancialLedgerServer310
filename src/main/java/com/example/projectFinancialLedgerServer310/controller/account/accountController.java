@@ -1,8 +1,8 @@
 package com.example.projectFinancialLedgerServer310.controller.account;
 
-import com.example.projectFinancialLedgerServer310.entity.account.Signup;
-import com.example.projectFinancialLedgerServer310.repository.account.SignupRepository;
-import com.example.projectFinancialLedgerServer310.service.account.SignupService;
+import com.example.projectFinancialLedgerServer310.entity.account.Account;
+import com.example.projectFinancialLedgerServer310.repository.account.AccountRepository;
+import com.example.projectFinancialLedgerServer310.service.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,16 +14,14 @@ import java.util.List;
 
 @Controller
 public class accountController {
-    private final SignupService signupService;
-    private final SignupRepository signupRepository;
+    private final AccountService accountService;
+
 
     @Autowired
-    public accountController(SignupService signupService, SignupRepository signupRepository) {
-        this.signupService = signupService;
-        this.signupRepository = signupRepository;
+    public accountController(AccountService accountService) {
+        this.accountService = accountService;
     }
 
-    Long inject = 1L;
 
     @GetMapping("signUp")
     public String signUp() {
@@ -32,39 +30,37 @@ public class accountController {
 
     @PostMapping("signUp")
     public String signUp_post(
-            @RequestParam(value = "input_id", required = false) String input_id,
+            @RequestParam(value = "account_id", required = false) String account_id,
             @RequestParam(value = "pw", required = false) String pw,
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "email", required = false) String email,
             Model model
     ) {
-
-        inject++;
-        signupRepository.save(new Signup(inject, input_id, pw, name, email));
-        model.addAttribute("signup_list", signupService.getSignupInfo());
+        this.accountService.saveAccountData(new Account(account_id, pw, name, email));
+        model.addAttribute("signup_list", this.accountService.findAllAccountData());
         return "account/signUp";
     }
 
     @GetMapping("login")
     public String login(Model model) {
-        model.addAttribute("failMessage", "");
+        model.addAttribute("fail_Message", "");
         return "account/login";
     }
 
     @PostMapping("login")
     public String login_post(
-            @RequestParam(value = "input_id", required = false) String input_id,
+            @RequestParam(value = "account_id", required = false) String account_id,
             @RequestParam(value = "pw", required = false) String pw,
             Model model
     ) {
-        List<Signup> members = signupService.getSignupInfo();
-        System.out.println(members.get(1).getInput_id());
-        System.out.println(members.get(1).getPw());
-        System.out.println(members.get(1).getName());
+        List<Account> members = this.accountService.findAllAccountData();
+//        System.out.println(members.get(0).getAccount_id());
+//        System.out.println(members.get(0).getPw());
+//        System.out.println(members.get(0).getName());
         String message = "";
         for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).getInput_id().equals(input_id) && members.get(i).getPw().equals(pw)) {
-                return "ledgerByMonth";
+            if (members.get(i).getAccount_id().equals(account_id) && members.get(i).getPw().equals(pw)) {
+                return "ledger/ledgerByMonth";
             }
         }
         model.addAttribute("fail_message", "로그인이 실패했습니다");
