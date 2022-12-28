@@ -26,7 +26,7 @@ public class Account {
     private Long id;
 
     @Column(length = 200, nullable = false)
-    private String account_id;
+    private String input_id;
 
     //@Column : 컬럼의 속성 넣기 (length : 크기, nullable : null값 허용)
     @Column(length = 200, nullable = false)
@@ -38,8 +38,8 @@ public class Account {
     @Column(length = 200, nullable = false)
     private String email;
 
-    public Account(String account_id, String pw, String name, String email) {
-        this.account_id = account_id;
+    public Account(String input_id, String pw, String name, String email) {
+        this.input_id = input_id;
         this.pw = pw;
         this.name = name;
         this.email = email;

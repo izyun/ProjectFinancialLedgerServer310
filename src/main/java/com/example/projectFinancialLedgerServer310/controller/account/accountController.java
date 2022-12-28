@@ -30,13 +30,13 @@ public class accountController {
 
     @PostMapping("signUp")
     public String signUp_post(
-            @RequestParam(value = "account_id", required = false) String account_id,
+            @RequestParam(value = "input_id", required = false) String input_id,
             @RequestParam(value = "pw", required = false) String pw,
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "email", required = false) String email,
             Model model
     ) {
-        this.accountService.saveAccountData(new Account(account_id, pw, name, email));
+        this.accountService.saveAccountData(new Account(input_id, pw, name, email));
         model.addAttribute("signup_list", this.accountService.findAllAccountData());
         return "account/signUp";
     }
@@ -49,17 +49,17 @@ public class accountController {
 
     @PostMapping("login")
     public String login_post(
-            @RequestParam(value = "account_id", required = false) String account_id,
+            @RequestParam(value = "input_id", required = false) String input_id,
             @RequestParam(value = "pw", required = false) String pw,
             Model model
     ) {
         List<Account> members = this.accountService.findAllAccountData();
-//        System.out.println(members.get(0).getAccount_id());
+//        System.out.println(members.get(0).getInput_id());
 //        System.out.println(members.get(0).getPw());
 //        System.out.println(members.get(0).getName());
         String message = "";
         for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).getAccount_id().equals(account_id) && members.get(i).getPw().equals(pw)) {
+            if (members.get(i).getInput_id().equals(input_id) && members.get(i).getPw().equals(pw)) {
                 return "ledger/ledgerByMonth";
             }
         }

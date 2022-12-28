@@ -11,7 +11,7 @@ method : @GetMapping과 @PostMapping 구분하는 전달 방식
 button 클릭 시 form tag안에 있는 모든 데이터를 서버에 전달
 -->
 <form action="signUp" method="post">
-    id : <input type="text" name="account_id">
+    id : <input type="text" name="input_id">
     pw : <input type="text" name="pw">
     name : <input type="text" name="name">
     email : <input type="text" name="email">
@@ -39,7 +39,7 @@ button 클릭 시 form tag안에 있는 모든 데이터를 서버에 전달
             배열로 Model에서 받으면, each 반복문으로 하나씩(하나의 인스턴스) 꺼내서 출력
 -->
     <tr th:each="item : ${signup_list}">
-        <td th:text="${item.getAccount_id()}"></td>
+        <td th:text="${item.getInput_id()}"></td>
         <td th:text="${item.getPw()}"></td>
         <td th:text="${item.getName()}"></td>
         <td th:text="${item.getEmail()}"></td>
