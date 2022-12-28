@@ -24,6 +24,8 @@ button 클릭 시 form tag안에 있는 모든 데이터를 서버에 전달
     th : table header : 컬럼
     td : table body : 튜플(mysql의 데이터 한 단위)
 -->
+<br>
+회원가입 리스트
 <table>
     <tr>
         <th>id</th>
@@ -43,6 +45,7 @@ button 클릭 시 form tag안에 있는 모든 데이터를 서버에 전달
         <td th:text="${item.getEmail()}"></td>
     </tr>
 </table>
+<br>
 <div>
     <a href="/login">로그인</a>
 </div>

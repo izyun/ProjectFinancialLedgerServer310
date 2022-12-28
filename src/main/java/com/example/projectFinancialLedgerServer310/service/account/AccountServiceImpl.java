@@ -14,7 +14,6 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     public AccountServiceImpl(AccountRepository accountRepository) {
-
         this.accountRepository = accountRepository;
     }
 

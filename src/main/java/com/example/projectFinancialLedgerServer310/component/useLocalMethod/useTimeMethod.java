@@ -1,4 +1,4 @@
-package com.example.studySpringboot0002.component.useLocalMethod;
+package com.example.projectFinancialLedgerServer310.component.useLocalMethod;
 
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,7 @@ public class useTimeMethod {
 
     public static String timeData() {
         LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYYMMddHHmmss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss");
         String logDate = dateTime.format(formatter);
         return logDate;
     }

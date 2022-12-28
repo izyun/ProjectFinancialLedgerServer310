@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>일일</title>
+</head>
+<body>
+<h1>일일내역</h1>
+<div>
+  <a href="/admin/cashbookByDay/pre/${currentYear}/${currentMonth}/${currentDay}">
+    이전
+  </a>
+
+  <div><span th:text="${currentYear}">년</span><span th:text="${currentMonth}">월</span><span th:text="${currentDay}">일</span></div>
+
+  <a href="/admin/cashbookByDay/next/${currentYear}/${currentMonth}/${currentDay}">
+    이후
+  </a>
+
+</div>
+<a href="/admin/addCashbook?currentYear=${currentYear}&currentMonth=${currentMonth}&currentDay=${currentDay}">수입/지출 입력</a>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ledgerDate</th>
+    <th>ledgerContent</th>
+    <th>return_operate</th>
+    <th>ledgerPrice</th>
+    <th>수정</th>
+    <th>삭제</th>
+  </tr>
+  </thead>
+  <tbody>
+  <div th:each="c:${cashbookList}">
+    <tr>
+      <td><span th:text="${c.ledgerDate}"></span></td>
+      <td><span th:text="${c.ledgerContent}"></span></td>
+      <td><span th:text="${c.return_operate}"></span></td>
+      <td><span th:text="${c.ledgerPrice}"></span></td>
+      <td><a href="">수정</a></td>
+      <td><a href="">삭제</a></td>
+    </tr>
+  </div>
+  </tbody>
+</table>
+</body>
+</html>

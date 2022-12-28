@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>가계부 입력</title>
+</head>
+<body>
+<h1>가계부 입력</h1>
+<div>
+<form action="insertLedger" method="post">
+    <table border="1">
+        <tr>
+            <td>ledger_date</td>
+            <td>
+                <input type="datetime-local" name="ledgerDate">
+            </td>
+        </tr>
+        <tr>
+            <td>ledger_kind</td>
+            <td>
+                <input type="radio" name="return_operate" value="+">수입
+                <input type="radio" name="return_operate" value="-">지출
+            </td>
+        </tr>
+<!--        <tr>-->
+<!--            <td>category_name</td>-->
+<!--            <td>-->
+<!--                <select name="ledgerName">-->
+<!--                    <div th:each="c : ${categoryList}">-->
+<!--                        <option value="${c.categoryName}"><span th:text ="${c.categoryName}"></span></option>-->
+<!--                    </div>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+        <tr>
+            <td>ledger_price</td>
+            <td>
+                <input type="text" name="ledgerPrice">
+            </td>
+        </tr>
+        <tr>
+            <td>ledger_content</td>
+            <td>
+                <input type="text" name="ledgerContent">
+            </td>
+        </tr>
+    </table>
+    <button type="submit">수입/지출 입력</button>
+</form>
+</div>
+<br>
+입력 리스트
+<div>
+    <table>
+        <tr>
+            <td>ledgerDate</td>
+            <td>ledgerContent</td>
+            <td>return_operate</td>
+            <td>ledgerPrice</td>
+            <td>updateDate</td>
+        </tr>
+        <tr th:each="item : ${ledgerData}">
+            <td th:text="${item.getLedgerDate}"></td>
+            <td th:text="${item.getLedgerContent}"></td>
+            <td th:text="${item.getReturn_operate}"></td>
+            <td th:text="${item.getLedgerPrice}"></td>
+            <td th:text="${item.getUpdateDate}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
