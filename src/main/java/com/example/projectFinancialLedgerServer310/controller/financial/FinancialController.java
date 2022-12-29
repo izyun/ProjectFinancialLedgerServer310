@@ -35,7 +35,7 @@ public class FinancialController {
      * @return
      */
     @PostMapping("financial_day")
-    public String financial_day(@RequestParam(value = "start_day", required = false)String start_day,
+    public String financial_day_post(@RequestParam(value = "start_day", required = false)String start_day,
                                 @RequestParam(value = "end_day", required = false)String end_day,
                                 Model model ) {
         String returndata = "";
@@ -68,7 +68,6 @@ public class FinancialController {
             Model model
     ) {
         this.financialExample.saveFinancialData(new FinancialEntity(return_operate, price, financial_day, timeData()));
-        //redirect 적용
         return "redirect:/financial_index";
     }
 }

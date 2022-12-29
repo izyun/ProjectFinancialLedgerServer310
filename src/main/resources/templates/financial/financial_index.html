@@ -14,26 +14,30 @@
     </form>
 </div>
 
-        Financial List
-        <div>
-            <table>
-                <tr>
-                    <td>return_operate</td>
-                    <td>price</td>
-                    <td>financial_day</td>
-                    <td>updateTime</td>
-                </tr>
-                <tr th:each="item : ${financialList}">
-                    <td th:text="${item.getReturn_operate}"></td>
-                    <td th:text="${item.getPrice}"></td>
-                    <td th:text="${item.getFinancial_day}"></td>
-                    <td th:text="${item.getUpdate_time}"></td>
-                </tr>
-            </table>
-        </div>
+Financial List
+<div>
+    <table>
+        <tr>
+            <td>return_operate</td>
+            <td>price</td>
+            <td>financial_day</td>
+            <td>updateTime</td>
+        </tr>
+        <tr th:each="item : ${financialList}">
+            <td th:text="${item.getReturn_operate}"></td>
+            <td th:text="${item.getPrice}"></td>
+            <td th:text="${item.getFinancial_day}"></td>
+            <td th:text="${item.getUpdate_time}"></td>
+        </tr>
+    </table>
+</div>
 
-
-
-
+<form action="/financial_day" method="post">
+    start day : <input th:type="text" name="start_day">
+    end day : <input th:type="text" name="end_day">
+    <button>검색하기</button>
+</form>
+특정 범위에 금액 출력
+<p th:text="${financialData}"></p>
 </body>
 </html>
